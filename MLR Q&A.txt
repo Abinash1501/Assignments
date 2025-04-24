@@ -1,0 +1,48 @@
+Interview Questions and Answers:
+
+1. What is Normalization & Standardization and how is it helpful?
+
+Normalization and standardization are both feature scaling techniques used in machine learning to transform numerical data into a standard range. This is crucial because features with different scales can lead to certain algorithms giving more weight to features with larger values, potentially skewing the model's performance.
+
+Normalization typically scales the values of a feature to a specific range, often between 0 and 1. A common method for normalization is Min-Max scaling, where each value is transformed using the formula:
+X_normalized = (X - X_min) / (X_max - X_min)
+Normalization is helpful when the range of the data is bounded and when algorithms are sensitive to the scale of the input features, such as neural networks and distance-based algorithms like k-Nearest Neighbors. It ensures all features contribute equally to the model.
+
+Standardization, also known as Z-score scaling, scales the values of a feature to have a mean of 0 and a standard deviation of 1. The formula for standardization is:
+X_standardized = (X - mean) / standard deviation
+Standardization is beneficial when the data follows a Gaussian (normal) distribution or when algorithms are sensitive to the mean and variance of the data, such as linear regression, logistic regression, and Support Vector Machines. It helps to center the data around zero and scale it to have a unit variance, which can improve the convergence speed of optimization algorithms and make the model less sensitive to outliers compared to normalization.
+
+In summary, both techniques aim to bring features to a comparable scale, which helps machine learning models to:
+- Improve the performance and convergence speed of algorithms.
+- Prevent features with larger values from dominating those with smaller values.
+- Make the model less sensitive to the scale of the input features.
+- Potentially improve the accuracy and stability of the model.
+
+
+2. What techniques can be used to address multicollinearity in multiple linear regression?
+
+Multicollinearity occurs in multiple linear regression when two or more predictor variables are highly correlated, making it difficult to isolate the individual effect of each predictor on the response variable. It can lead to unstable coefficient estimates, inflated standard errors, and difficulty in interpreting the model. Several techniques can be used to address multicollinearity:
+
+a. Examine Correlation Matrix and Variance Inflation Factor (VIF):
+   - Calculate the pairwise correlation coefficients between all predictor variables. High correlation (e.g., > 0.7 or 0.8 in absolute value) indicates potential multicollinearity.
+   - Calculate the Variance Inflation Factor (VIF) for each predictor. VIF quantifies how much the variance of an estimated regression coefficient is increased because of collinearity. A common rule of thumb is that a VIF greater than 5 or 10 suggests a high level of multicollinearity.
+
+b. Remove Highly Correlated Variables:
+   - If two or more variables are highly correlated and represent similar information, one or more of them can be removed from the model. The choice of which variable to remove should be based on domain knowledge and the theoretical relevance of the variables. However, this can lead to a loss of information.
+
+c. Combine Correlated Variables:
+   - Create a new variable that is a combination of the correlated variables. This could involve taking the average, sum, or using techniques like Principal Component Analysis (PCA) to create uncorrelated components that capture most of the variance. This reduces dimensionality but can make the variables less interpretable.
+
+d. Increase Sample Size:
+   - Obtaining more data can sometimes help to reduce multicollinearity, as a larger dataset may provide more independent variation between the predictors. However, this is not always feasible.
+
+e. Ridge Regression:
+   - Ridge regression is a regularization technique that adds a small bias to the regression coefficients to reduce the standard errors and stabilize the estimates in the presence of multicollinearity. It adds an L2 penalty term to the loss function, shrinking the coefficients towards zero but not exactly to zero.
+
+f. Lasso Regression:
+   - Lasso regression is another regularization technique that adds an L1 penalty term to the loss function. Unlike ridge regression, lasso can force some coefficients to be exactly zero, effectively performing feature selection and potentially reducing the impact of multicollinearity by excluding some correlated variables.
+
+g. Partial Least Squares (PLS) Regression:
+   - PLS is a dimension reduction technique that can be used when there is high multicollinearity. It finds components (latent variables) that are good predictors of the response variable and also account for the covariance between the predictors.
+
+The choice of technique depends on the severity of the multicollinearity, the goals of the analysis (prediction vs. interpretation), and the nature of the data. It's often beneficial to try multiple approaches and evaluate their impact on the model's performance and interpretability.

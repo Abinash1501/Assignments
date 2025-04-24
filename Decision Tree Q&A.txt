@@ -1,0 +1,49 @@
+Interview Questions and Answers:
+
+1. What are some common hyperparameters of decision tree models, and how do they affect the model's performance?
+
+Decision tree models have several hyperparameters that control the structure and complexity of the tree, significantly impacting the model's performance and its tendency to overfit or underfit the data. Some common hyperparameters include:
+
+a.  `max_depth`: This parameter limits the maximum depth of the decision tree.
+    - Effect: A deeper tree can capture more complex relationships in the data, potentially leading to overfitting if it learns noise specific to the training set. A shallower tree might underfit the data, failing to capture important patterns. Tuning `max_depth` is crucial for finding the right balance.
+
+b.  `min_samples_split`: This specifies the minimum number of samples required to split an internal node.
+    - Effect: A higher value prevents nodes from splitting if they contain only a few samples, which can help to prune the tree and prevent overfitting, especially on noisy data. A lower value allows for splits even on small groups, potentially leading to a more complex tree.
+
+c.  `min_samples_leaf`: This defines the minimum number of samples required to be at a leaf node.
+    - Effect: Similar to `min_samples_split`, a higher value can help to prevent overfitting by ensuring that leaf nodes have a certain level of support. It can lead to a smoother decision boundary.
+
+d.  `max_features`: This parameter controls the number of features to consider when looking for the best split at each node.
+    - Effect: Reducing the number of features considered can introduce more randomness into the tree growing process, which can be beneficial in ensemble methods like Random Forests. It can also help to prevent overfitting, especially when there are many irrelevant features. Options often include a fixed number, a fraction of the total features, or functions like 'sqrt' or 'log2'.
+
+e.  `criterion`: This specifies the function to measure the quality of a split. Common options include 'gini' impurity and 'entropy' for classification trees, and 'mse' (mean squared error) and 'mae' (mean absolute error) for regression trees.
+    - Effect: The choice of criterion can influence which features are selected for splitting and the overall structure of the tree. Generally, 'gini' and 'entropy' often yield similar results, although 'entropy' might slightly favor more balanced splits. For regression, 'mse' is more sensitive to outliers than 'mae'.
+
+f.  `min_impurity_decrease`: This parameter sets a threshold for the decrease in impurity required for a split to occur.
+    - Effect: A higher value will make the tree more conservative in making splits, potentially leading to a simpler and less overfit model. Splits that do not significantly reduce impurity will be avoided.
+
+Tuning these hyperparameters, often through techniques like cross-validation and grid search or randomized search, is essential to build a decision tree model that generalizes well to unseen data and achieves optimal performance for the specific task.
+
+
+2. What is the difference between Label encoding and One-hot encoding?
+
+Label encoding and one-hot encoding are two common techniques used to convert categorical variables into a numerical format that machine learning models can understand. They differ in how they represent the categories.
+
+Label Encoding:
+- In label encoding, each unique category in a categorical feature is assigned a numerical label. For example, if a feature 'Color' has categories ['Red', 'Green', 'Blue'], label encoding might assign them as Red: 0, Green: 1, Blue: 2.
+- This method is straightforward and easy to implement.
+- However, label encoding introduces an ordinal relationship between the categories, even if no such relationship exists in reality. For instance, in the 'Color' example, the model might incorrectly interpret Blue (2) as being "greater than" Green (1), which is not true for nominal categories.
+- Label encoding is typically suitable for ordinal categorical features, where the categories have a meaningful order (e.g., ['Low', 'Medium', 'High']).
+
+One-Hot Encoding:
+- In one-hot encoding, each unique category in a categorical feature is converted into a new binary (dummy) variable. For each category, a new column is created, and for each data point, the corresponding column will have a value of 1 if the data point belongs to that category, and 0 otherwise.
+- For the 'Color' example, one-hot encoding would create three new columns: 'Color_Red', 'Color_Green', and 'Color_Blue'. A data point with 'Red' would have [1, 0, 0] in these columns, 'Green' would be [0, 1, 0], and 'Blue' would be [0, 0, 1].
+- One-hot encoding does not impose any ordinal relationship between the categories. Each category is treated as independent.
+- This method is generally preferred for nominal categorical features, where there is no inherent order between the categories.
+- A potential drawback of one-hot encoding is that it can significantly increase the dimensionality of the dataset, especially if a categorical feature has a large number of unique categories.
+
+In summary:
+- Label encoding assigns integer labels to categories, implying an order.
+- One-hot encoding creates binary columns for each category, avoiding any ordinal relationship.
+
+The choice between these two techniques depends on the nature of the categorical data and the machine learning algorithm being used. For nominal data, one-hot encoding is generally safer to avoid misleading the model with artificial ordinality. For ordinal data, label encoding can be appropriate and more memory-efficient.

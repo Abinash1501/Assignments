@@ -1,0 +1,37 @@
+Interview Questions and Answers:
+
+1. What are the key hyperparameters in KNN?
+
+The K-Nearest Neighbors (KNN) algorithm has a few key hyperparameters that significantly influence its performance and behavior. The primary hyperparameters are:
+
+a.  The number of neighbors (K): This determines the number of nearest neighbors to a query point that will be considered when making a prediction. A smaller value of K can lead to more complex and potentially noisy decision boundaries, while a larger value tends to smooth the boundaries.
+
+b.  The weight function: This specifies how the contribution of each neighbor to the prediction is weighted. Common options include uniform weights (all neighbors contribute equally) and distance-based weights (closer neighbors have a greater influence).
+
+c.  The distance metric: The choice of distance metric (e.g., Euclidean, Manhattan) can significantly impact the identification of nearest neighbors and the model's performance. While not always strictly a hyperparameter, it is a crucial parameter to consider and tune.
+
+Less frequently considered but potentially relevant hyperparameters include algorithms for efficient nearest neighbor search and leaf size for tree-based search algorithms. However, the number of neighbors (K) and the weight function are generally the most critical to tune.
+
+
+2. What distance metrics can be used in KNN?
+
+The K-Nearest Neighbors (KNN) algorithm utilizes a distance metric to quantify the similarity or proximity between data points. Several distance metrics can be employed, including:
+
+a.  Euclidean Distance: The straight-line distance between two points.
+    Formula: $\sqrt{\sum_{i=1}^{n} (q_i - p_i)^2}$
+
+b.  Manhattan Distance (L1 Norm): The sum of the absolute differences between the coordinates of two points.
+    Formula: $\sum_{i=1}^{n} |q_i - p_i|$
+
+c.  Minkowski Distance: A generalized metric where different values of a parameter 'r' yield other distance metrics (e.g., r=2 is Euclidean, r=1 is Manhattan).
+    Formula: $\left(\sum_{i=1}^{n} |q_i - p_i|^r\right)^{1/r}$
+
+d.  Chebyshev Distance (L∞ Norm): The maximum absolute difference between the coordinates of two points.
+    Formula: $\max_{i} |q_i - p_i|$
+
+e.  Cosine Similarity: Measures the cosine of the angle between two vectors; often transformed into a distance measure (e.g., 1 - cosine similarity).
+    Formula: $\frac{\sum_{i=1}^{n} p_i q_i}{\sqrt{\sum_{i=1}^{n} p_i^2} \sqrt{\sum_{i=1}^{n} q_i^2}}$
+
+f.  Hamming Distance: Measures the number of positions at which corresponding symbols are different; used for categorical or binary data.
+
+The selection of the appropriate distance metric depends on the characteristics of the data and the specific problem being addressed.

@@ -1,0 +1,28 @@
+Interview Questions and Answers:
+
+1. Can you explain the difference between user-based and item-based collaborative filtering?
+
+The core difference between user-based and item-based collaborative filtering lies in what the algorithm uses as the basis for finding similarities and making recommendations.
+
+User-based collaborative filtering identifies users who have similar tastes to a target user. It looks at the items the target user has liked or interacted with and finds other users who have liked or interacted with those same items in a similar way. Then, it recommends items that these similar users have liked but the target user has not yet seen. The idea is "users who are like you also liked these things."
+
+Item-based collaborative filtering, on the other hand, focuses on the relationships between items. It determines which items are similar to each other based on the patterns of user ratings or interactions. For a target user, it looks at the items they have already liked and then recommends other items that are found to be similar to those previously liked items. The idea is "people who liked this item also liked these other items."
+
+In essence, user-based looks for similar *users*, while item-based looks for similar *items*. Item-based methods are often more scalable and can handle sparse data better than user-based methods.
+
+
+2. What is collaborative filtering, and how does it work?
+
+Collaborative filtering is a recommendation technique that predicts what a user might like based on the preferences of other users. It works by collecting and analyzing a large amount of information on users' behaviors, activities, or preferences, and predicting what users will like based on their similarity to other users or the similarity of items.
+
+Here's a simplified breakdown of how it works:
+
+a. Data Collection: The system gathers data about user-item interactions. This can be explicit feedback, like ratings (e.g., 1 to 5 stars), or implicit feedback, like purchase history, browsing behavior, or time spent viewing an item. This data is often stored in a user-item matrix.
+
+b. Finding Similarities: The algorithm then identifies similarities, either between users (user-based) or between items (item-based), based on their interaction patterns in the collected data. Similarity is often calculated using metrics like cosine similarity or Pearson correlation.
+
+c. Generating Recommendations:
+   - In user-based CF, once similar users are found for a target user, the system looks at the items that these similar users have liked but the target user has not yet encountered. It then recommends these items to the target user.
+   - In item-based CF, once similar items are found for the items a target user has liked, the system recommends these similar items to the user.
+
+Collaborative filtering doesn't need to know anything about the items themselves (like their genre or features) or the users (like their age or demographics). It solely relies on the past interactions of users with items to make predictions.
